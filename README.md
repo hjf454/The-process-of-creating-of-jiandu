@@ -14,16 +14,17 @@
 pip install opencv-python pillow numpy tqdm
 
 
-项目结构
+📂 项目结构
 .
 ├── split_jian_characters.py     # 简牍字符切分脚本
 ├── advanced_image_enhance.py    # 加强版图片增强脚本
 ├── README.md                    # 使用说明
 
-使用方法
+🚀 使用方法
+1️⃣ 切分简牍字符
 
-1、切分简牍字符
 运行 split_jian_characters.py 将整张简牍图片切分成单个字符图片。
+
 python split_jian_characters.py --input ./jian_full/img.png --output ./output_chars
 
 运行完成后，output_chars/ 文件夹中会生成：
@@ -32,9 +33,13 @@ char_2.png
 char_3.png
 ...
 
-2、增强切分后的字符图片（可选）
+2️⃣ 增强切分后的字符图片
+
+运行 advanced_image_enhance.py 对切分出的字符图片进行画质优化。
 运行 advanced_image_enhance.py 对切分出的模糊性较高的字符图片进行画质优化。
+
 python advanced_image_enhance.py --input ./output_chars --output ./enhanced_chars --sharpen 1.8 --contrast 1.3 --denoise 2
+
 参数说明：
 
 --input：切分后的字符图片文件夹
@@ -53,7 +58,8 @@ python advanced_image_enhance.py --input ./output_chars --output ./enhanced_char
 
 运行完成后，增强后的图片会保存到 enhanced_chars/ 文件夹中。
 
-完整处理流程
+🔄 完整处理流程
+
 整张简牍图片 (img.png)
         │
         ▼
@@ -67,3 +73,13 @@ python advanced_image_enhance.py --input ./output_chars --output ./enhanced_char
         │
         ▼
 优化后的字符图片 (enhanced_chars/)
+
+💡 注意事项
+
+切分脚本使用 OpenCV，增强脚本使用 Pillow 和 NumPy。
+
+切分时会自动过滤过小的噪点区域。
+
+增强脚本会自动分析图片清晰度和亮度，进行自适应参数调整（可关闭）。
+
+两个脚本可以单独使用，但推荐按照 先切分 → 再增强 的顺序运行。
